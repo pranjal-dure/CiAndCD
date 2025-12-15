@@ -41,5 +41,6 @@ jobs:
                   key: ${{secrets.EC2_KEY}}
                   script: |
                       docker pull ${{secrets.DOCKERHUB_USERNAME}}/container-tut:latest
-                      docker stop container-tut || true && docker rm container-tut || true
+                      docker stop container-tut || true 
+                      docker rm -f container-tut || true
                       docker run -d  --restart unless-stopped  --name container-tut  -p 8000:8000  ${{ secrets.DOCKERHUB_USERNAME }}/container-tut:latest  
